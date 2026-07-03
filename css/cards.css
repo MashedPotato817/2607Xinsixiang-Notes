@@ -54,13 +54,6 @@
     font-size: 1.15rem;
 }
 
-/* 重要度星级 */
-.proba {
-    font-size: 0.75rem;
-    margin-right: 0.25rem;
-    font-weight: 400;
-}
-
 .card-header .arrow {
     font-size: 0.75rem;
     color: var(--text-dim);
