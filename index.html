@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新思想考前速记 | 习近平新时代中国特色社会主义思想概论</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-light: #3b82f6;
+            --primary-dark: #1d4ed8;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --text-secondary: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
+            --radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        /* 顶部导航栏 */
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .top-bar h1 {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .menu-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        /* 全屏导航 */
+        .fullscreen-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .fullscreen-nav.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .fullscreen-nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 1rem 2rem;
+            margin: 0.5rem 0;
+            border-radius: var(--radius);
+            transition: all 0.3s ease;
+        }
+
+        .fullscreen-nav a:hover {
+            background: var(--primary);
+        }
+
+        .fullscreen-nav .close-btn {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: white;
+        }
+
+        /* 快速导航标签 */
+        .quick-nav {
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 0.75rem 1rem;
+            overflow-x: auto;
+            white-space: nowrap;
+            z-index: 999;
+            box-shadow: var(--shadow);
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .quick-nav a {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--bg);
+            color: var(--text);
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border);
+        }
+
+        .quick-nav a:hover, .quick-nav a.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* 主内容区 */
+        .main-content {
+            padding: 120px 1rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* 卡片样式 */
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .card-header {
+            padding: 1rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+
+        .card-header h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .accordion-icon {
+            transition: transform 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .accordion-icon.active {
+            transform: rotate(180deg);
+        }
+
+        .card-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .card-content.active {
+            max-height: 5000px;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        /* 考点样式 */
+        .exam-point {
+            background: #f0f9ff;
+            border-left: 4px solid var(--primary);
+            padding: 1rem 1.25rem;
+            margin-bottom: 1rem;
+            border-radius: 0 var(--radius) var(--radius) 0;
+        }
+
+        .exam-point h3 {
+            color: var(--primary-dark);
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .exam-point ul, .exam-point ol {
+            padding-left: 1.25rem;
+            margin: 0;
+        }
+
+        .exam-point li {
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        /* 重点提示框 */
+        .highlight-box {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border: 1px solid #f59e0b;
+            border-radius: var(--radius);
+            padding: 1rem 1.25rem;
+            margin: 1rem 0;
+        }
+
+        .highlight-box::before {
+            content: "⚠️ 重点";
+            font-weight: 600;
+            color: #92400e;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* 页脚 */
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        /* 返回顶部按钮 */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 48px;
+            height: 48px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-lg);
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            html {
+                font-size: 15px;
+            }
+
+            .top-bar h1 {
+                font-size: 1rem;
+            }
+
+            .card-body {
+                padding: 1.25rem;
+            }
+
+            .exam-point {
+                padding: 0.875rem 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            html {
+                font-size: 14px;
+            }
+
+            .top-bar {
+                padding: 0.75rem 1rem;
+            }
+
+            .quick-nav {
+                top: 52px;
+                padding: 0.5rem 0.75rem;
+            }
+
+            .main-content {
+                padding: 110px 0.75rem 1.5rem;
+            }
+
+            .card-body {
+                padding: 1rem;
+            }
+
+            .back-to-top {
+                bottom: 1.5rem;
+                right: 1.5rem;
+                width: 44px;
+                height: 44px;
+            }
+        }
+
+        /* 表格响应式 */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        table {
+            table-layout: fixed;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            word-break: break-all;
+            overflow-wrap: break-word;
+            white-space: normal;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+        }
+
+        th {
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <div class="top-bar">
+        <h1>📚 新思想考前速记</h1>
+        <button class="menu-toggle" id="menuToggle">☰</button>
+    </div>
+
+    <!-- 全屏导航 -->
+    <div class="fullscreen-nav" id="fullscreenNav">
+        <span class="close-btn" id="closeNav">×</span>
+        <a href="#chapter-intro">导论</a>
+        <a href="#chapter-1">第一章</a>
+        <a href="#chapter-2">第二章</a>
+        <a href="#chapter-3">第三章</a>
+        <a href="#chapter-4">第四章</a>
+        <a href="#chapter-5">第五章</a>
+        <a href="#chapter-6">第六章</a>
+        <a href="#chapter-7">第七章</a>
+        <a href="#chapter-8">第八章</a>
+        <a href="#chapter-9">第九章</a>
+        <a href="#chapter-10">第十章</a>
+        <a href="#chapter-11">第十一章</a>
+        <a href="#chapter-12">第十二章</a>
+        <a href="#chapter-13">第十三章</a>
+        <a href="#chapter-14">第十四章</a>
+        <a href="#chapter-15">第十五章</a>
+        <a href="#chapter-16">第十六章</a>
+        <a href="#chapter-17">第十七章</a>
+    </div>
+
+    <!-- 快速导航标签 -->
+    <div class="quick-nav">
+        <a href="#chapter-intro">导论</a>
+        <a href="#chapter-1">Ch1</a>
+        <a href="#chapter-2">Ch2</a>
+        <a href="#chapter-3">Ch3</a>
+        <a href="#chapter-4">Ch4</a>
+        <a href="#chapter-5">Ch5</a>
+        <a href="#chapter-6">Ch6</a>
+        <a href="#chapter-7">Ch7</a>
+        <a href="#chapter-8">Ch8</a>
+        <a href="#chapter-9">Ch9</a>
+        <a href="#chapter-10">Ch10</a>
+        <a href="#chapter-11">Ch11</a>
+        <a href="#chapter-12">Ch12</a>
+        <a href="#chapter-13">Ch13</a>
+        <a href="#chapter-14">Ch14</a>
+        <a href="#chapter-15">Ch15</a>
+        <a href="#chapter-16">Ch16</a>
+        <a href="#chapter-17">Ch17</a>
+    </div>
+
+    <!-- 主内容区 -->
+    <div class="main-content">
+        <!-- 导论 -->
+        <div class="card" id="chapter-intro">
+            <div class="card-header" onclick="toggleAccordion(this)">
+                <h2>📌 导论：习近平新时代中国特色社会主义思想</h2>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <div class="exam-point">
+                        <h3>【考点1】创立的时代背景</h3>
+                        <ol>
+                            <li>世界百年未有之大变局加速演进</li>
+                            <li>中华民族伟大复兴进入关键时期，中国式现代化全面推进拓展</li>
+                            <li>科学社会主义在21世纪的中国焕发新的蓬勃生机</li>
+                            <li>中国共产党自我革命开辟新的境界</li>
+                        </ol>
+                    </div>
+
+                    <div class="exam-point">
+                        <h3>【考点2】科学回答的重大时代课题</h3>
+                        <ol>
+                            <li>新时代坚持和发展什么样的中国特色社会主义、怎样坚持和发展中国特色社会主义</li>
+                            <li>建设什么样的社会主义现代化强国、怎样建设社会主义现代化强国</li>
+                            <li>建设什么样的长期执政的马克思主义政党、怎样建设长期执政的马克思主义政党</li>
+                        </ol>
+                    </div>
+
+                    <div class="exam-point">
+                        <h3>【考点3】世界观和方法论（六个必须坚持）</h3>
+                        <ol>
+                            <li>坚持人民至上，坚持自信自立</li>
+                            <li>坚持守正创新，坚持问题导向</li>
+                            <li>坚持系统观念，坚持胸怀天下</li>
+                        </ol>
+                    </div>
+
+                    <div class="exam-point">
+                        <h3>【考点4】历史地位</h3>
+                        <ol>
+                            <li>是当代中国马克思主义、21世纪马克思主义</li>
+                            <li>是中华文化和中国精神的时代精华</li>
+                            <li>实现了马克思主义中国化时代化新的飞跃</li>
+                            <li>是新时代党和国家事业发展的根本遵循</li>
+                        </ol>
+                    </div>
+
+                    <div class="highlight-box">
+                        "两个确立"的决定性意义：是党在新时代取得的重大政治成果，是新时代党和国家事业取得历史性成就、发生历史性变革的决定性因素。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第一章 -->
+        <div class="card" id="chapter-1">
+            <div class="card-header" onclick="toggleAccordion(this)">
+                <h2>📖 第一章：新时代坚持和发展中国特色社会主义</h2>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <div class="exam-point">
+                        <h3>【考点1】中国特色社会主义是历史和人民的选择</h3>
+                        <ul>
+                            <li>是历史的结论，人民的选择</li>
+                            <li>具有深厚的历史渊源和广泛的现实基础</li>
+                            <li>是科学社会主义理论逻辑和中国社会发展历史逻辑的辩证统一</li>
+                            <li>是实现中华民族伟大复兴的正确道路</li>
+                        </ul>
+                    </div>
+
+                    <div class="exam-point">
+                        <h3>【考点2】"四个自信"</h3>
+                        <ul>
+                            <li>道路自信、理论自信、制度自信、文化自信</li>
+                            <li>坚定中国特色社会主义道路自信、理论自信、制度自信，说到底是要坚定文化自信</li>
+                        </ul>
+                    </div>
+
+                    <div class="exam-point">
+                        <h3>【考点3】新时代伟大变革的里程碑意义</h3>
+                        <ol>
+                            <li>中国共产党在革命性锻造中更加坚强有力</li>
+                            <li>中国人民的前进动力更加强大、奋斗精神更加昂扬、必胜信念更加坚定</li>
+                            <li>实现中华民族伟大复兴进入不可逆转的历史进程</li>
+                            <li>科学社会主义在21世纪的中国焕发出新的蓬勃生机</li>
+                        </ol>
+                    </div>
+
+                    <div class="exam-point">
+                        <h3>【考点4】改革开放以来取得一切成绩和进步的根本原因</h3>
+                        <ol>
+                            <li>开辟了中国特色社会主义道路</li>
+                            <li>形成了中国特色社会主义理论体系</li>
+                            <li>确立了中国特色社会主义制度</li>
+                            <li>发展了中国特色社会主义文化</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第二章 -->
+        <div class="card" id="chapter-2">
+            <div class="card-header" onclick="toggleAccordion(this)">
+                <h2>📖 第二章：以中国式现代化全面推进中华民族伟大复兴</h2>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <div class="exam-point">
+                        <h3>【考点1】中国梦的本质</h3>
+                        <ul>
+                            <li>国家富强、民族振兴、人民幸福</li>
+                        </ul>
+                    </div>
+
+                    <div class="exam-point">
+                        <h3>【考点2】中国式现代化的五大特征</h3>
+                        <ol>
+                            <li>人口规模巨大的现代化</li>
+                            <li>全体人民共同富裕的现代化</li>
+                            <li>物质文明和精神文明相协调的现代化</li>
+                            <li>人与自然和谐共生的现代化</li>
+                            <li>走和平发展道路的现代化</li>
+                        </ol>
+                    </div>
+
+                    <div class="exam-point">
+                        <h3>【考点3】中国式现代化的本质要求</h3>
+                        <ol>
+                            <li>坚持中国共产党领导</li>
+                            <li>坚持中国特色社会主义</li>
+                            <li>实现高质量发展</li>
+                            <li>发展全过程人民民主</li>
+                            <li>丰富人民精神世界</li>
+                            <li>实现全体人民共同富裕</li>
+                            <li>促进人与自然和谐共生</li>
+                            <li>推动构建人类命运共同体</li>
+                            <li>创造人类文明新形态</li>
+                        </ol>
+                    </div>
+
+                    <div class="highlight-box">
+                        五个必由之路：党的领导是必由之路、中国特色社会主义是必由之路、团结奋斗是必由之路、贯彻新发展理念是必由之路、全面从严治党是必由之路。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第三章 -->
+        <div class="card" id="chapter-3">
+            <div class="card-header" onclick="toggleAccordion(this)">
+                <h2>📖 第三章：坚持党的全面领导</h2>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <div class="exam-point">
+                        <h3>【考点1】中国共产党领导是中国特色社会主义最本质的特征</h3>
+                        <ul>
+                            <li>中国共产党领导是中国特色社会主义制度的最大优势</li>
+                            <li>党是最高政治领导力量</li>
+                        </ul>
+                    </div>
+
+                    <div class="exam-point">
+                        <h3>【考点2】党的领导是全面的、系统的、整体的</h3>
+                        <ul>
+                            <li><strong>领导对象全面</strong>：党领导人大、政府、政协、监察机关、司法机关、军队、人民团体、企事业单位等</li>
+                            <li><strong>领导内容全面</strong>：包括经济、政治、文化、社会、生态文明、国家安全、国防军队、外交、党的建设等</li>
+                            <li><strong>领导过程全面</strong>：贯穿立法、决策、执行、管理、监督全过程</li>
+                            <li><strong>领导方式全面</strong>：通过制定路线方针政策、推荐干部、思想宣传、发挥党组织作用等实现领导</li>
+                        </ul>
+                    </div>
+
+                    <div class="exam-point">
+                        <h3>【考点3】"四个意识""两个维护"</h3>
+                        <ul>
+                            <li><strong>四个意识</strong>：政治意识、大局意识、核心意识、看齐意识</li>
+                            <li><strong>两个维护</strong>：坚决维护习近平总书记党中央的核心、全党的核心地位；坚决维护党中央权威和集中统一领导</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第四章 -->
+        <div class="card" id="chapter-4">
+            <div class="card-header" onclick="toggleAccordion(this)">
+                <h2>📖 第四章：坚持以人民为中心</h2>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <div class="exam-point">
+                        <h3>【考点1】人民立场是中国共产党的根本政治立场</h3>
+                        <ul>
+                            <li>体现党的性质宗旨、执政理念和根本属性</li>
+                            <li>是中国共产党区别于其他政党的显著标志</li>
+                        </ul>
+                    </div>
+
+                    <div class="exam-point">
+                        <h3>【考点2】如何理解共同富裕的重要性</h3>
+                        <ol>
+                            <li>共同富裕是中国共产党人始终不渝的奋斗目标</li>
+                            <li>共同富裕是中国特色社会主义的本质要求</li>
+                            <li>共同富裕是中国式现代化的重要特征</li>
+                        </ol>
+                    </div>
+
+                    <div class="exam-point">
+                        <h3>【考点3】扎实推动共同富裕的重大举措</h3>
+                        <ol>
+                            <li>着力扩大中等收入群体规模</li>
+                            <li>加强对高收入的规范和调节</li>
+                            <li>促进人民精神生活共同富裕</li>
+                            <li>促进农民农村共同富裕</li>
+                            <li>促进基本公共服务均等化</li>
+                            <li>提高发展的平衡性、协调性、包容性</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第五章 -->
+        <div class="card" id="chapter-5">
+            <div class="card-header" onclick="toggleAccordion(this)">
+                <h2>📖 第五章：全面深化改革开放</h2>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <div class="exam-point">
+                        <h3>【考点1】全面深化改革总目标</h3>
+                        <ol>
+                            <li>完善和发展中国特色社会主义制度</li>
+                            <li>推进国家治理体系和治理能力现代化</li>
+                        </ol>
+                    </div>
+
+                    <div class="exam-point">
+                        <h3>【考点2】新发展理念的五大理念</h3>
+                        <ul>
+                            <li><strong>创新</strong>：注重解决发展动力问题</li>
+                            <li><strong>协调</strong>：注重解决发展不平衡问题</li>
+                            <li><strong>绿色</strong>：注重解决人与自然和谐共生问题</li>
+                            <li><strong>开放</strong>：注重解决发展内外联动问题</li>
+                            <li><strong>共享</strong>：注重解决社会公平正义问题</li>
+                        </ul>
+                    </div>
+
+                    <div class="highlight-box">
+                        新发展格局：以国内大循环为主体、国内国际双循环相互促进。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第六章 -->
+        <div class="card" id="chapter-6">
+            <div class="card-header" onclick="toggleAccordion(this)">
+                <h2>📖 第六章：推动高质量发展</h2>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <div class="exam-point">
+                        <h3>【考点1】高质量发展的含义</h3>
+                        <ol>
+                            <li>是能够满足人民日益增长的美好生活需要的发展</li>
+                            <li>是体现新发展理念的发展</li>
+                            <li>是创新成为第一动力、协调成为内生特点、绿色成为普遍形态、开放成为必由之路、共享成为根本目的的发展</li>
+                            <li>从"有没有"转向"好不好"</li>
+                        </ol>
+                    </div>
+
+                    <div class="exam-point">
+                        <h3>【考点2】我国社会主义基本经济制度</h3>
+                        <ol>
+                            <li>以公有制为主体、多种所有制经济共同发展</li>
+                            <li>以按劳分配为主体、多种分配方式并存</li>
+                            <li>社会主义市场经济体制</li>
+                        </ol>
+                    </div>
+
+                    <div class="exam-point">
+                        <h3>【考点3】实施乡村振兴战略</h3>
+                        <ul>
+                            <li>农业农村现代化是总目标</li>
+                            <li>坚持农业农村优先发展是总方针</li>
+                            <li>产业兴旺、生态宜居、乡风文明、治理有效、生活富裕是总要求</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第七章 -->
+        <div class="card" id="chapter-7">
+            <div class="card-header" onclick="toggleAccordion(this)">
+                <h2>📖 第七章：教育、科技、人才战略</h2>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <div class="exam-point">
+                        <h3>【考点1】全面建设社会主义现代化国家的基础性、战略性支撑</h3>
+                        <ol>
+                            <li>教育是根本，科技是关键，人才是基础</li>
+                            <li>必须坚持科技是第一生产力、人才是第一资源、创新是第一动力</li>
+                            <li>必须坚持教育优先发展、科技自立自强、人才引领驱动</li>
+                            <li>必须深入实施科教兴国战略、人才强国战略、创新驱动发展战略</li>
+                        </ol>
+                    </div>
+
+                    <div class="exam-point">
+                        <h3>【考点2】建设教育强国</h3>
+                        <ol>
+                            <li>全面建成社会主义现代化强国的战略先导</li>
+                            <li>实现高水平科技自立自强的重要支撑</li>
+                            <li>促进全体人民共同富裕的有效途径</li>
+                            <li>以中国式现代化全面推进中华民族伟大复兴的基础工程</li>
+                        </ol>
+                    </div>
+
+                    <div class="highlight-box">
+                        关键核心技术是要不来、买不来、讨不来的，是国之重器，必须掌握在自己手中。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第八章 -->
+        <div class="card" id="chapter-8">
+            <div class="card-header" onclick="toggleAccordion(this)">
+                <h2>📖 第八章：发展全过程人民民主</h2>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <div class="exam-point">
+                        <h3>【考点1】什么是全过程人民民主</h3>
+                        <ul>
+                            <li>全链条、全方位、全覆盖的民主</li>
+                            <li>是最广泛、最真实、最管用的社会主义民主</li>
+                        </ul>
+                    </div>
+
+                    <div class="exam-point">
+                        <h3>【考点2】如何理解全过程人民民主</h3>
+                        <ul>
+                            <li><strong>在领域上</strong>：涵盖经济、政治、文化、社会、生态文明等各个方面</li>
+                            <li><strong>在环节上</strong>：民主选举、民主协商、民主决策、民主管理、民主监督环环相扣</li>
+                            <li><strong>在形式上</strong>：人民通过选举、投票行使权利和协商取得一致意见</li>
+                            <li><strong>在实际效果上</strong>：实现了过程民主和成果民主相统一、程序民主和实质民主相统一</li>
+                        </ul>
+                    </div>
+
+                    <div class="exam-point">
+                        <h3>【考点3】怎样评价民主</h3>
+                        <ul>
+                            <li><strong>从主体看</strong>：民主应该由这个国家的人民来评判</li>
+                            <li><strong>从功效看</strong>：民主主要用来解决人民需要解决的问题</li>
+                            <li><strong>从标准看</strong>：民主作为一种国家制度，有其基本的评价依据</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第九章 -->
+        <div class="card" id="chapter-9">
+            <div class="card-header" onclick="toggleAccordion(this)">
+                <h2>📖 第九章：全面依法治国</h2>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <div class="exam-point">
+                        <h3>【考点1】依法治国的总目标</h3>
+                        <ul>
+                            <li>建设中国特色社会主义法治体系、建设社会主义法治国家</li>
+                        </ul>
+                    </div>
+
+                    <div class="exam-point">
+                        <h3>【考点2】中国特色社会主义法治体系</h3>
+                        <ol>
+                            <li>完备的法律规范体系</li>
+                            <li>高效的法治实施体系</li>
+                            <li>严密的法治监督体系</li>
+                            <li>有力的法治保障体系</li>
+                            <li>完善的党内法规体系</li>
+                        </ol>
+                    </div>
+
+                    <div class="exam-point">
+                        <h3>【考点3】法治建设的新十六字方针</h3>
+                        <ul>
+                            <li>科学立法、严格执法、公正司法、全民守法</li>
+                        </ul>
+                    </div>
+
+                    <div class="highlight-box">
+                        全面依法治国体现在：全方位（五大体系）、全层次（共同推进、一体建设）、全过程（十六字方针）。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第十章 -->
+        <div class="card" id="chapter-10">
+            <div class="card-header" onclick="toggleAccordion(this)">
+                <h2>📖 第十章：建设社会主义文化强国</h2>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <div class="exam-point">
+                        <h3>【考点1】社会主义核心价值观</h3>
+                        <ul>
+                            <li><strong>国家层面</strong>：富强、民主、文明、和谐</li>
+                            <li><strong>社会层面</strong>：自由、平等、公正、法治</li>
+                            <li><strong>公民层面</strong>：爱国、敬业、诚信、友善</li>
+                        </ul>
+                    </div>
+
+                    <div class="exam-point">
+                        <h3>【考点2】中华文明的突出特性</h3>
+                        <ul>
+                            <li>连续性、创新性、统一性、包容性、和平性</li>
+                        </ul>
+                    </div>
+
+                    <div class="exam-point">
+                        <h3>【考点3】传承发展中华优秀传统文化</h3>
+                        <ul>
+                            <li><strong>创造性转化</strong>：根据时代要求，对传统文化中有价值的内容和形式进行改造</li>
+                            <li><strong>创新性发展</strong>：根据时代进步，对传统文化内涵进行补充、拓展、完善</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第十一章 -->
+        <div class="card" id="chapter-11">
+            <div class="card-header" onclick="toggleAccordion(this)">
+                <h2>📖 第十一章：以保障和改善民生为重点加强社会建设</h2>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <div class="exam-point">
+                        <h3>【考点1】民生和发展的关系</h3>
+                        <ol>
+                            <li>发展是改善民生的物质基础</li>
+                            <li>民生改善能够促进发展、扩大内需、增强社会活力</li>
+                            <li>民生和发展相互牵动、互为条件</li>
+                        </ol>
+                    </div>
+
+                    <div class="exam-point">
+                        <h3>【考点2】坚持在发展中增进民生福祉</h3>
+                        <ul>
+                            <li><strong>工作思路</strong>：坚守底线、突出重点、完善制度、引导预期</li>
+                            <li><strong>重要原则</strong>：尽力而为、量力而行；人人尽责、人人享有</li>
+                        </ul>
+                    </div>
+
+                    <div class="exam-point">
+                        <h3>【考点3】怎样推进社会治理现代化</h3>
+                        <ol>
+                            <li>坚持系统治理、综合治理、依法治理、源头治理</li>
+                            <li>健全党组织领导的自治、法治、德治相结合的城乡基层治理体系</li>
+                            <li>加强社会治安综合治理</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第十二章 -->
+        <div class="card" id="chapter-12">
+            <div class="card-header" onclick="toggleAccordion(this)">
+                <h2>📖 第十二章：建设社会主义生态文明</h2>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <div class="exam-point">
+                        <h3>【考点1】社会主义生态文明观</h3>
+                        <ol>
+                            <li>人与自然和谐共生的现代化</li>
+                            <li>绿水青山就是金山银山</li>
+                            <li>良好生态环境是最普惠的民生福祉</li>
+                            <li>山水林田湖草沙是生命共同体</li>
+                            <li>用最严格制度最严密法治保护生态环境</li>
+                            <li>共谋全球生态文明建设</li>
+                        </ol>
+                    </div>
+
+                    <div class="exam-point">
+                        <h3>【考点2】怎样建设美丽中国</h3>
+                        <ol>
+                            <li>形成绿色发展方式和生活方式</li>
+                            <li>着力解决突出环境问题</li>
+                            <li>加快推进生态环境保护修复</li>
+                            <li>扎实推进碳达峰碳中和工作</li>
+                            <li>改革完善生态环境监管考核体制</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第十三章 -->
+        <div class="card" id="chapter-13">
+            <div class="card-header" onclick="toggleAccordion(this)">
+                <h2>📖 第十三章：维护和塑造国家安全</h2>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <div class="exam-point">
+                        <h3>【考点1】总体国家安全观</h3>
+                        <ul>
+                            <li>坚持国家利益至上，以人民安全为宗旨，以政治安全为根本，以经济安全为保障</li>
+                        </ul>
+                    </div>
+
+                    <div class="exam-point">
+                        <h3>【考点2】"五个统筹"</h3>
+                        <ol>
+                            <li>统筹发展和安全</li>
+                            <li>统筹开放和安全</li>
+                            <li>统筹传统安全和非传统安全</li>
+                            <li>统筹自身安全和共同安全</li>
+                            <li>统筹维护国家安全和塑造国家安全</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第十四章 -->
+        <div class="card" id="chapter-14">
+            <div class="card-header" onclick="toggleAccordion(this)">
+                <h2>📖 第十四章：建设巩固国防和强大人民军队</h2>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <div class="exam-point">
+                        <h3>【考点1】党在新时代的强军目标</h3>
+                        <ul>
+                            <li>建设一支听党指挥、能打胜仗、作风优良的人民军队，把人民军队建设成为世界一流军队</li>
+                        </ul>
+                    </div>
+
+                    <div class="exam-point">
+                        <h3>【考点2】"四有"和"四铁"</h3>
+                        <ul>
+                            <li><strong>四有</strong>：有灵魂、有本事、有血性、有品德</li>
+                            <li><strong>四铁</strong>：铁一般的信仰、铁一般的信念、铁一般的纪律、铁一般的担当</li>
+                        </ul>
+                    </div>
+
+                    <div class="exam-point">
+                        <h3>【考点3】"五个坚持"战略布局</h3>
+                        <ul>
+                            <li>政治建军、改革强军、科技强军、人才强军、依法治军</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第十五章 -->
+        <div class="card" id="chapter-15">
+            <div class="card-header" onclick="toggleAccordion(this)">
+                <h2>📖 第十五章：坚持"一国两制"和推进祖国完全统一</h2>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <div class="exam-point">
+                        <h3>【考点1】"一国两制"方针最高原则</h3>
+                        <ul>
+                            <li>维护国家主权、安全、发展利益是"一国两制"方针的最高原则</li>
+                        </ul>
+                    </div>
+
+                    <div class="exam-point">
+                        <h3>【考点2】人类命运共同体——建设五个世界</h3>
+                        <ol>
+                            <li>坚持对话协商，建设持久和平的世界</li>
+                            <li>坚持共建共享，建设普遍安全的世界</li>
+                            <li>坚持合作共赢，建设共同繁荣的世界</li>
+                            <li>坚持交流互鉴，建设开放包容的世界</li>
+                            <li>坚持绿色低碳，建设清洁美丽的世界</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第十六章 -->
+        <div class="card" id="chapter-16">
+            <div class="card-header" onclick="toggleAccordion(this)">
+                <h2>📖 第十六章：中国特色大国外交</h2>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <div class="exam-point">
+                        <h3>【考点1】弘扬全人类共同价值</h3>
+                        <ul>
+                            <li>和平、发展、公平、正义、民主、自由</li>
+                        </ul>
+                    </div>
+
+                    <div class="exam-point">
+                        <h3>【考点2】当前世界面临的"四大赤字"</h3>
+                        <ol>
+                            <li>治理赤字</li>
+                            <li>和平赤字</li>
+                            <li>信任赤字</li>
+                            <li>发展赤字</li>
+                        </ol>
+                    </div>
+
+                    <div class="exam-point">
+                        <h3>【考点3】世界怎么了</h3>
+                        <ol>
+                            <li>世界进入动荡变革期</li>
+                            <li>国际力量对比发生深刻变化</li>
+                            <li>经济全球化遭遇逆流</li>
+                            <li>国际体系和国际秩序深度调整</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第十七章 -->
+        <div class="card" id="chapter-17">
+            <div class="card-header" onclick="toggleAccordion(this)">
+                <h2>📖 第十七章：全面从严治党</h2>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <div class="exam-point">
+                        <h3>【考点1】为什么要从严治党</h3>
+                        <ol>
+                            <li>从严治党是马克思主义政党的政治优势</li>
+                            <li>全面从严治党是实现民族复兴的根本保证</li>
+                            <li>全面从严治党是决定党兴衰成败的关键因素</li>
+                        </ol>
+                    </div>
+
+                    <div class="exam-point">
+                        <h3>【考点2】勇于自我革命</h3>
+                        <ul>
+                            <li>勇于自我革命是跳出历史周期率的第二个答案</li>
+                            <li>是我们党最鲜明的品格和最大的优势</li>
+                            <li>是我们党区别于其他政党的显著标志</li>
+                        </ul>
+                    </div>
+
+                    <div class="exam-point">
+                        <h3>【考点3】"三个务必"</h3>
+                        <ol>
+                            <li>务必不忘初心、牢记使命</li>
+                            <li>务必谦虚谨慎、艰苦奋斗</li>
+                            <li>务必敢于斗争、善于斗争</li>
+                        </ol>
+                    </div>
+
+                    <div class="highlight-box">
+                        为什么要把党的政治建设摆在首位：政治建设决定党的建设的方向和效果，抓住了全面从严治党的根本性问题。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <p>📚 新思想考前速记 | 习近平新时代中国特色社会主义思想概论</p>
+        <p>考试只考大题，祝你取得好成绩！🎯</p>
+    </footer>
+
+    <!-- 返回顶部按钮 -->
+    <button class="back-to-top" id="backToTop">↑</button>
+
+    <script>
+        // 汉堡菜单
+        const menuToggle = document.getElementById('menuToggle');
+        const fullscreenNav = document.getElementById('fullscreenNav');
+        const closeNav = document.getElementById('closeNav');
+
+        menuToggle.addEventListener('click', () => {
+            fullscreenNav.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeNav.addEventListener('click', () => {
+            fullscreenNav.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        // 点击导航链接关闭菜单
+        fullscreenNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                fullscreenNav.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // 手风琴折叠
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('.accordion-icon');
+            content.classList.toggle('active');
+            icon.classList.toggle('active');
+        }
+
+        // 返回顶部按钮
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.style.display = 'flex';
+            } else {
+                backToTop.style.display = 'none';
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // 快速导航高亮
+        const quickNavLinks = document.querySelectorAll('.quick-nav a');
+        const sections = document.querySelectorAll('.card');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.scrollY >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            quickNavLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
