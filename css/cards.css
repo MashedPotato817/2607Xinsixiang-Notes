@@ -1,0 +1,210 @@
+/* ========================================
+   新思想考前速记 - 卡片样式
+   ======================================== */
+
+/* 主容器 */
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 1.25rem;
+    padding-bottom: 80px;
+    position: relative;
+    z-index: 1;
+}
+
+/* 主卡片 */
+.card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    margin-bottom: 1rem;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.3s, border-color 0.3s;
+}
+
+.card:hover {
+    box-shadow: var(--shadow);
+    border-color: var(--border-bright);
+}
+
+.card-header {
+    padding: 1rem 1.25rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+    transition: background 0.2s;
+    position: relative;
+}
+
+.card-header:hover { background: var(--bg-elevated); }
+
+.card-header h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.card-header .icon {
+    font-size: 1.15rem;
+}
+
+.card-header .arrow {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s;
+}
+
+.card.active .card-header .arrow {
+    transform: rotate(180deg);
+    color: var(--blue-500);
+}
+
+.card-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card.active .card-content {
+    max-height: 10000px;
+}
+
+.card-body {
+    padding: 0 1.25rem 1.25rem;
+}
+
+/* 高频考点特殊卡片 */
+.exam-focus-card {
+    border: 2px solid var(--blue-400);
+    background: linear-gradient(135deg, var(--bg-card) 0%, var(--blue-50) 100%);
+}
+
+.exam-focus-card:hover {
+    border-color: var(--blue-600);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+}
+
+.exam-focus-card .card-header {
+    background: linear-gradient(135deg, var(--blue-50) 0%, var(--blue-100) 100%);
+}
+
+.exam-focus-card .card-header h2 {
+    color: var(--blue-700);
+}
+
+/* 知识点卡片 */
+.knowledge-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--blue-400);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 0.875rem 1rem;
+    margin: 0.75rem 0;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.knowledge-card:hover {
+    border-left-color: var(--blue-600);
+    background: var(--blue-50);
+    box-shadow: var(--shadow);
+    transform: translateX(2px);
+}
+
+.knowledge-card h4 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--blue-600);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+}
+
+/* 章节标题 */
+h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--blue-600);
+    margin: 1.25rem 0 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--blue-100);
+}
+
+h3:first-child { margin-top: 0; }
+
+/* 列表 */
+ul, ol {
+    padding-left: 1.5rem;
+    margin: 0.5rem 0;
+}
+
+li {
+    margin: 0.4rem 0;
+    font-size: 0.875rem;
+    line-height: 1.8;
+}
+
+li::marker {
+    color: var(--blue-400);
+}
+
+/* 等级标签 */
+.level-tag {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.7rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+    margin-right: 0.3rem;
+    font-weight: 600;
+    transition: transform 0.2s;
+}
+
+.level-tag:hover {
+    transform: scale(1.05);
+}
+
+.level-tag-master {
+    background: #fef2f2;
+    color: #dc2626;
+    border: 1px solid #fecaca;
+}
+
+.level-tag-understand {
+    background: #eff6ff;
+    color: #2563eb;
+    border: 1px solid #bfdbfe;
+}
+
+.level-tag-know {
+    background: #f8fafc;
+    color: #64748b;
+    border: 1px solid #e2e8f0;
+}
+
+/* 入场动画 */
+@keyframes cardReveal {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.card {
+    animation: cardReveal 0.4s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+}
+
+.card:nth-child(1) { animation-delay: 0.05s; }
+.card:nth-child(2) { animation-delay: 0.1s; }
+.card:nth-child(3) { animation-delay: 0.15s; }
+.card:nth-child(4) { animation-delay: 0.2s; }
+.card:nth-child(5) { animation-delay: 0.25s; }
+.card:nth-child(6) { animation-delay: 0.3s; }
+.card:nth-child(7) { animation-delay: 0.35s; }
+.card:nth-child(8) { animation-delay: 0.4s; }
+.card:nth-child(9) { animation-delay: 0.45s; }
+.card:nth-child(10) { animation-delay: 0.5s; }
+.card:nth-child(11) { animation-delay: 0.55s; }
+.card:nth-child(12) { animation-delay: 0.6s; }

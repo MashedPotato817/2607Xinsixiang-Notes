@@ -1,0 +1,106 @@
+/* ========================================
+   新思想考前速记 - 基础样式
+   ======================================== */
+
+/* CSS 变量 */
+:root {
+    /* Blue Palette */
+    --blue-50: #eff6ff;
+    --blue-100: #dbeafe;
+    --blue-200: #bfdbfe;
+    --blue-300: #93c5fd;
+    --blue-400: #60a5fa;
+    --blue-500: #3b82f6;
+    --blue-600: #2563eb;
+    --blue-700: #1d4ed8;
+
+    /* Red Danger */
+    --red-50: #fef2f2;
+    --red-100: #fee2e2;
+    --red-400: #f87171;
+    --red-500: #ef4444;
+    --red-600: #dc2626;
+
+    /* Green Success */
+    --green-50: #f0fdf4;
+    --green-100: #dcfce7;
+    --green-500: #22c55e;
+    --green-600: #16a34a;
+
+    /* Amber Warning */
+    --amber-50: #fffbeb;
+    --amber-100: #fef3c7;
+    --amber-400: #fbbf24;
+    --amber-500: #f59e0b;
+    --amber-600: #d97706;
+
+    /* Neutral */
+    --bg: #f8fafc;
+    --bg-surface: #ffffff;
+    --bg-card: #ffffff;
+    --bg-elevated: #f1f5f9;
+    --border: #e2e8f0;
+    --border-bright: #cbd5e1;
+    --text-primary: #1e293b;
+    --text-secondary: #475569;
+    --text-dim: #94a3b8;
+
+    /* Layout */
+    --radius: 8px;
+    --radius-lg: 12px;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+    --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.06);
+    --font-body: 'Noto Sans SC', -apple-system, sans-serif;
+}
+
+/* Reset */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+    scroll-padding-top: 100px;
+}
+
+body {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-primary);
+    background: var(--bg);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* 全局工具类 */
+.highlight {
+    color: var(--blue-700);
+    font-weight: 700;
+    background: var(--blue-50);
+    padding: 0.1rem 0.3rem;
+    border-radius: 3px;
+}
+
+/* 链接 */
+a {
+    color: var(--blue-600);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--blue-700);
+}
+
+/* 打印样式 */
+@media print {
+    body { background: white; color: black; }
+    .header, .quick-nav, .back-to-top, .collapse-all, .menu-toggle, .fullscreen-nav { display: none !important; }
+    .card { break-inside: avoid; border: 1px solid #ccc; box-shadow: none; }
+    .card-content { max-height: none !important; }
+}
