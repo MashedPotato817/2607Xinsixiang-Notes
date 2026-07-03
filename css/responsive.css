@@ -26,7 +26,7 @@
 
     .header .exam-info { display: none; }
 
-    .quick-nav { padding: 0.5rem 0; }
+    .quick-nav { padding: 0.5rem 0.75rem; }
 
     .quick-nav a {
         font-size: 0.8rem;
