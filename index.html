@@ -4,392 +4,549 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>新思想考前速记 | 习近平新时代中国特色社会主义思想概论</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2563eb;
-            --primary-light: #3b82f6;
-            --primary-dark: #1d4ed8;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --danger: #ef4444;
+            /* --- Blue Palette --- */
+            --blue-50: #eff6ff;
+            --blue-100: #dbeafe;
+            --blue-200: #bfdbfe;
+            --blue-300: #93c5fd;
+            --blue-400: #60a5fa;
+            --blue-500: #3b82f6;
+            --blue-600: #2563eb;
+            --blue-700: #1d4ed8;
+            --blue-glow: rgba(59, 130, 246, 0.08);
+
+            /* --- Red Danger --- */
+            --red-50: #fef2f2;
+            --red-100: #fee2e2;
+            --red-400: #f87171;
+            --red-500: #ef4444;
+            --red-600: #dc2626;
+
+            /* --- Green Success --- */
+            --green-50: #f0fdf4;
+            --green-100: #dcfce7;
+            --green-500: #22c55e;
+            --green-600: #16a34a;
+
+            /* --- Amber Warning --- */
+            --amber-50: #fffbeb;
+            --amber-100: #fef3c7;
+            --amber-400: #fbbf24;
+            --amber-500: #f59e0b;
+            --amber-600: #d97706;
+
+            /* --- Neutral --- */
             --bg: #f8fafc;
-            --card-bg: #ffffff;
-            --text: #1e293b;
-            --text-secondary: #64748b;
+            --bg-surface: #ffffff;
+            --bg-card: #ffffff;
+            --bg-elevated: #f1f5f9;
             --border: #e2e8f0;
-            --shadow: 0 1px 3px rgba(0,0,0,0.1);
-            --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
-            --radius: 12px;
+            --border-bright: #cbd5e1;
+            --text-primary: #1e293b;
+            --text-secondary: #475569;
+            --text-dim: #94a3b8;
+
+            /* --- Layout --- */
+            --radius: 8px;
+            --radius-lg: 12px;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.06);
+            --font-body: 'Noto Sans SC', -apple-system, sans-serif;
         }
 
-        * {
+        /* ============ RESET ============ */
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html, body {
-            overflow-x: hidden;
-            width: 100%;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.7;
+        html {
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
+            scroll-padding-top: 100px;
         }
 
-        /* 顶部导航栏 */
-        .top-bar {
-            position: fixed;
+        body {
+            font-family: var(--font-body);
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background: var(--bg);
+            min-height: 100vh;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ============ HEADER ============ */
+        .header {
+            position: sticky;
             top: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            padding: 1rem 1.5rem;
+            z-index: 100;
+            background: linear-gradient(135deg, var(--blue-600) 0%, var(--blue-700) 100%);
+            box-shadow: var(--shadow-md);
+        }
+
+        .header-content {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0.875rem 1.25rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 1000;
-            box-shadow: var(--shadow-lg);
         }
 
-        .top-bar h1 {
-            font-size: 1.2rem;
-            font-weight: 600;
+        .header h1 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -0.01em;
         }
 
-        .menu-toggle {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.5rem;
+        .header .exam-info {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #ffffff;
+            background: rgba(255,255,255,0.2);
+            padding: 0.3rem 0.75rem;
+            border-radius: 999px;
         }
 
-        /* 全屏导航 */
-        .fullscreen-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.95);
-            z-index: 2000;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .fullscreen-nav.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .fullscreen-nav a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.2rem;
-            padding: 1rem 2rem;
-            margin: 0.5rem 0;
-            border-radius: var(--radius);
-            transition: all 0.3s ease;
-        }
-
-        .fullscreen-nav a:hover {
-            background: var(--primary);
-        }
-
-        .fullscreen-nav .close-btn {
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            font-size: 2rem;
-            cursor: pointer;
-            color: white;
-        }
-
-        /* 快速导航标签 */
+        /* ============ QUICK NAV ============ */
         .quick-nav {
-            position: fixed;
-            top: 60px;
-            left: 0;
-            right: 0;
-            background: white;
-            padding: 0.75rem 1rem;
-            overflow-x: auto;
-            white-space: nowrap;
-            z-index: 999;
-            box-shadow: var(--shadow);
             display: flex;
+            overflow-x: auto;
             gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            background: var(--bg-surface);
+            border-bottom: 1px solid var(--border);
+            scrollbar-width: none;
+            position: sticky;
+            top: 52px;
+            z-index: 99;
         }
+
+        .quick-nav::-webkit-scrollbar { display: none; }
 
         .quick-nav a {
-            display: inline-block;
-            padding: 0.5rem 1rem;
+            flex-shrink: 0;
+            padding: 0.4rem 0.85rem;
             background: var(--bg);
-            color: var(--text);
+            color: var(--text-secondary);
             text-decoration: none;
-            border-radius: 20px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
             border: 1px solid var(--border);
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all 0.2s;
         }
 
-        .quick-nav a:hover, .quick-nav a.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
+        .quick-nav a:hover,
+        .quick-nav a:active {
+            background: var(--blue-50);
+            color: var(--blue-600);
+            border-color: var(--blue-300);
         }
 
-        /* 主内容区 */
-        .main-content {
-            padding: 120px 1rem 2rem;
-            max-width: 900px;
+        /* ============ MAIN CONTAINER ============ */
+        .container {
+            max-width: 960px;
             margin: 0 auto;
+            padding: 1.25rem;
+            padding-bottom: 80px;
+            position: relative;
+            z-index: 1;
         }
 
-        /* 卡片样式 */
+        /* ============ CARDS ============ */
         .card {
-            background: var(--card-bg);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            margin-bottom: 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            margin-bottom: 1rem;
             overflow: hidden;
-            width: 100%;
-            max-width: 100%;
+            box-shadow: var(--shadow-sm);
+            transition: box-shadow 0.3s, border-color 0.3s;
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow);
+            border-color: var(--border-bright);
         }
 
         .card-header {
-            padding: 1rem 1.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            color: white;
+            padding: 1rem 1.25rem;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
             user-select: none;
+            transition: background 0.2s;
+            position: relative;
         }
+
+        .card-header:hover { background: var(--bg-elevated); }
 
         .card-header h2 {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .accordion-icon {
-            transition: transform 0.3s ease;
-            font-size: 1.2rem;
+        .card-header .icon {
+            font-size: 1.15rem;
         }
 
-        .accordion-icon.active {
+        .card-header .arrow {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s;
+        }
+
+        .card.active .card-header .arrow {
             transform: rotate(180deg);
+            color: var(--blue-500);
         }
 
         .card-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .card-content.active {
-            max-height: 5000px;
+        .card.active .card-content {
+            max-height: 10000px;
         }
 
         .card-body {
-            padding: 1.5rem;
+            padding: 0 1.25rem 1.25rem;
         }
 
-        /* 考点样式 */
-        .exam-point {
-            background: #f0f9ff;
-            border-left: 4px solid var(--primary);
-            padding: 1rem 1.25rem;
-            margin-bottom: 1rem;
+        /* ============ KNOWLEDGE CARDS ============ */
+        .knowledge-card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--blue-400);
             border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 0.875rem 1rem;
+            margin: 0.5rem 0;
+            transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
         }
 
-        .exam-point h3 {
-            color: var(--primary-dark);
-            font-size: 1rem;
-            margin-bottom: 0.75rem;
+        .knowledge-card:hover {
+            border-left-color: var(--blue-600);
+            background: var(--blue-50);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .knowledge-card h4 {
+            font-size: 0.875rem;
             font-weight: 600;
+            color: var(--blue-600);
+            margin-bottom: 0.375rem;
         }
 
-        .exam-point ul, .exam-point ol {
-            padding-left: 1.25rem;
-            margin: 0;
-        }
-
-        .exam-point li {
-            margin-bottom: 0.5rem;
-            color: var(--text);
-        }
-
-        /* 重点提示框 */
-        .highlight-box {
-            background: linear-gradient(135deg, #fef3c7, #fde68a);
-            border: 1px solid #f59e0b;
+        /* ============ ALERT BOXES ============ */
+        .warning-box, .tip-box, .info-box {
             border-radius: var(--radius);
             padding: 1rem 1.25rem;
-            margin: 1rem 0;
+            margin: 0.75rem 0;
+            font-size: 0.875rem;
+            line-height: 1.7;
         }
 
-        .highlight-box::before {
-            content: "⚠️ 重点";
-            font-weight: 600;
-            color: #92400e;
+        .warning-box::before, .tip-box::before, .info-box::before {
             display: block;
+            font-weight: 700;
+            font-size: 0.8rem;
             margin-bottom: 0.5rem;
         }
 
-        /* 页脚 */
-        footer {
-            text-align: center;
-            padding: 2rem 1rem;
-            color: var(--text-secondary);
+        .warning-box {
+            background: var(--red-50);
+            border: 1px solid var(--red-100);
+            color: #991b1b;
+        }
+
+        .warning-box::before {
+            content: '⚠️ 注意';
+            color: var(--red-600);
+        }
+
+        .tip-box {
+            background: var(--green-50);
+            border: 1px solid var(--green-100);
+            color: #14532d;
+        }
+
+        .tip-box::before {
+            content: '💡 提示';
+            color: var(--green-600);
+        }
+
+        .info-box {
+            background: var(--blue-50);
+            border: 1px solid var(--blue-100);
+            color: #1e3a5f;
+        }
+
+        .info-box::before {
+            content: '📌 重点';
+            color: var(--blue-700);
+        }
+
+        /* ============ SECTION HEADINGS ============ */
+        h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--blue-600);
+            margin: 1.25rem 0 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--blue-100);
+        }
+
+        h3:first-child { margin-top: 0; }
+
+        /* ============ TABLES ============ */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 0.75rem 0;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            table-layout: fixed;
+        }
+
+        th, td {
+            padding: 0.625rem 0.875rem;
+            border-bottom: 1px solid var(--border);
+            text-align: left;
+            word-break: break-all;
+            overflow-wrap: break-word;
+        }
+
+        th {
+            background: var(--blue-600);
+            font-weight: 600;
+            font-size: 0.8rem;
+            color: #ffffff;
+            position: sticky;
+            top: 0;
+        }
+
+        tr:last-child td { border-bottom: none; }
+        tr:nth-child(even) { background: var(--bg); }
+        tr:hover { background: var(--blue-50); }
+
+        /* ============ LISTS ============ */
+        ul, ol {
+            padding-left: 1.5rem;
+            margin: 0.375rem 0;
+        }
+
+        li {
+            margin: 0.3rem 0;
             font-size: 0.875rem;
         }
 
-        /* 返回顶部按钮 */
+        li::marker {
+            color: var(--blue-400);
+        }
+
+        /* ============ BACK TO TOP ============ */
         .back-to-top {
             position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 48px;
-            height: 48px;
-            background: var(--primary);
-            color: white;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            width: 44px;
+            height: 44px;
+            background: var(--blue-600);
+            color: #ffffff;
             border: none;
             border-radius: 50%;
+            font-size: 1.25rem;
             cursor: pointer;
             display: none;
             align-items: center;
             justify-content: center;
-            box-shadow: var(--shadow-lg);
-            z-index: 999;
-            transition: all 0.3s ease;
+            box-shadow: var(--shadow-md);
+            transition: all 0.2s;
+            z-index: 1000;
         }
 
         .back-to-top:hover {
-            background: var(--primary-dark);
+            background: var(--blue-700);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        /* ============ COLLAPSE ALL BUTTON ============ */
+        .collapse-all {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            width: 44px;
+            height: 44px;
+            background: var(--bg-card);
+            color: var(--blue-600);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            font-size: 1.25rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-md);
+            transition: all 0.2s;
+            z-index: 1000;
+        }
+
+        .collapse-all:hover {
+            background: var(--blue-50);
+            border-color: var(--blue-300);
             transform: translateY(-2px);
         }
 
-        /* 响应式设计 */
+        /* ============ FOOTER ============ */
+        .footer {
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+            margin-top: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer p { margin: 0.25rem 0; }
+
+        .footer .highlight {
+            color: var(--blue-600);
+            font-weight: 600;
+        }
+
+        /* ============ ENTRANCE ANIMATION ============ */
+        @keyframes cardReveal {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            animation: cardReveal 0.4s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.05s; }
+        .card:nth-child(2) { animation-delay: 0.1s; }
+        .card:nth-child(3) { animation-delay: 0.15s; }
+        .card:nth-child(4) { animation-delay: 0.2s; }
+        .card:nth-child(5) { animation-delay: 0.25s; }
+        .card:nth-child(6) { animation-delay: 0.3s; }
+        .card:nth-child(7) { animation-delay: 0.35s; }
+        .card:nth-child(8) { animation-delay: 0.4s; }
+        .card:nth-child(9) { animation-delay: 0.45s; }
+        .card:nth-child(10) { animation-delay: 0.5s; }
+        .card:nth-child(11) { animation-delay: 0.55s; }
+        .card:nth-child(12) { animation-delay: 0.6s; }
+
+        /* ============ REQUIREMENT LEVELS ============ */
+        .level-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            padding: 0.1rem 0.4rem;
+            border-radius: 3px;
+            margin-right: 0.3rem;
+            font-weight: 600;
+        }
+
+        .level-tag-master {
+            background: #fef2f2;
+            color: #dc2626;
+            border: 1px solid #fecaca;
+        }
+
+        .level-tag-understand {
+            background: #eff6ff;
+            color: #2563eb;
+            border: 1px solid #bfdbfe;
+        }
+
+        .level-tag-know {
+            background: #f8fafc;
+            color: #64748b;
+            border: 1px solid #e2e8f0;
+        }
+
+        /* ============ RESPONSIVE ============ */
         @media (max-width: 768px) {
-            html {
-                font-size: 15px;
+            .header .exam-info {
+                font-size: 0.7rem;
+                padding: 0.25rem 0.6rem;
             }
 
-            .top-bar h1 {
-                font-size: 1rem;
-            }
+            .quick-nav { top: 48px; }
 
-            .card-body {
-                padding: 1.25rem;
-            }
+            .container { padding: 0.75rem; }
 
-            .exam-point {
-                padding: 0.875rem 1rem;
-            }
+            .card-body { padding: 0 1rem 1rem; }
+
+            h3 { font-size: 0.9rem; }
         }
 
         @media (max-width: 480px) {
-            html {
-                font-size: 14px;
+            .header h1 { font-size: 0.95rem; }
+
+            .header .exam-info { display: none; }
+
+            .quick-nav { padding: 0.5rem 0.75rem; }
+
+            .quick-nav a {
+                font-size: 0.75rem;
+                padding: 0.35rem 0.7rem;
             }
 
-            .top-bar {
-                padding: 0.75rem 1rem;
-            }
+            .card-header h2 { font-size: 0.9rem; }
 
-            .quick-nav {
-                top: 52px;
-                padding: 0.5rem 0.75rem;
-            }
+            .card-body { padding: 0 0.75rem 0.75rem; }
 
-            .main-content {
-                padding: 110px 0.75rem 1.5rem;
-            }
+            table { font-size: 0.8rem; }
 
-            .card-body {
-                padding: 1rem;
-            }
-
-            .back-to-top {
-                bottom: 1.5rem;
-                right: 1.5rem;
-                width: 44px;
-                height: 44px;
-            }
+            th, td { padding: 0.5rem 0.625rem; }
         }
 
-        /* 表格响应式 */
-        .table-wrapper {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            width: 100%;
-            max-width: 100%;
-        }
-
-        table {
-            table-layout: fixed;
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th, td {
-            word-break: break-all;
-            overflow-wrap: break-word;
-            white-space: normal;
-            padding: 0.75rem;
-            border: 1px solid var(--border);
-        }
-
-        th {
-            background: var(--primary);
-            color: white;
-            font-weight: 600;
+        /* ============ PRINT ============ */
+        @media print {
+            body { background: white; color: black; }
+            .header, .quick-nav, .back-to-top, .collapse-all { display: none !important; }
+            .card { break-inside: avoid; border: 1px solid #ccc; box-shadow: none; }
+            .card-content { max-height: none !important; }
         }
     </style>
 </head>
 <body>
-    <!-- 顶部导航栏 -->
-    <div class="top-bar">
-        <h1>📚 新思想考前速记</h1>
-        <button class="menu-toggle" id="menuToggle">☰</button>
-    </div>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <h1>📖 新思想考前速记</h1>
+            <span class="exam-info">📅 只考大题</span>
+        </div>
+    </header>
 
-    <!-- 全屏导航 -->
-    <div class="fullscreen-nav" id="fullscreenNav">
-        <span class="close-btn" id="closeNav">×</span>
-        <a href="#chapter-intro">导论</a>
-        <a href="#chapter-1">第一章</a>
-        <a href="#chapter-2">第二章</a>
-        <a href="#chapter-3">第三章</a>
-        <a href="#chapter-4">第四章</a>
-        <a href="#chapter-5">第五章</a>
-        <a href="#chapter-6">第六章</a>
-        <a href="#chapter-7">第七章</a>
-        <a href="#chapter-8">第八章</a>
-        <a href="#chapter-9">第九章</a>
-        <a href="#chapter-10">第十章</a>
-        <a href="#chapter-11">第十一章</a>
-        <a href="#chapter-12">第十二章</a>
-        <a href="#chapter-13">第十三章</a>
-        <a href="#chapter-14">第十四章</a>
-        <a href="#chapter-15">第十五章</a>
-        <a href="#chapter-16">第十六章</a>
-        <a href="#chapter-17">第十七章</a>
-    </div>
-
-    <!-- 快速导航标签 -->
+    <!-- Quick Nav -->
     <div class="quick-nav">
         <a href="#chapter-intro">导论</a>
         <a href="#chapter-1">Ch1</a>
@@ -411,18 +568,19 @@
         <a href="#chapter-17">Ch17</a>
     </div>
 
-    <!-- 主内容区 -->
-    <div class="main-content">
+    <!-- Main -->
+    <main class="container">
+
         <!-- 导论 -->
-        <div class="card" id="chapter-intro">
-            <div class="card-header" onclick="toggleAccordion(this)">
-                <h2>📌 导论：习近平新时代中国特色社会主义思想</h2>
-                <span class="accordion-icon">▼</span>
+        <section class="card active" id="chapter-intro">
+            <div class="card-header">
+                <h2><span class="icon">📌</span> 导论：习近平新时代中国特色社会主义思想</h2>
+                <span class="arrow">▼</span>
             </div>
             <div class="card-content">
                 <div class="card-body">
-                    <div class="exam-point">
-                        <h3>【考点1】创立的时代背景</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-master">掌握</span>【考点1】创立的时代背景</h4>
                         <ol>
                             <li>世界百年未有之大变局加速演进</li>
                             <li>中华民族伟大复兴进入关键时期，中国式现代化全面推进拓展</li>
@@ -431,8 +589,8 @@
                         </ol>
                     </div>
 
-                    <div class="exam-point">
-                        <h3>【考点2】科学回答的重大时代课题</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-master">掌握</span>【考点2】科学回答的重大时代课题</h4>
                         <ol>
                             <li>新时代坚持和发展什么样的中国特色社会主义、怎样坚持和发展中国特色社会主义</li>
                             <li>建设什么样的社会主义现代化强国、怎样建设社会主义现代化强国</li>
@@ -440,8 +598,8 @@
                         </ol>
                     </div>
 
-                    <div class="exam-point">
-                        <h3>【考点3】世界观和方法论（六个必须坚持）</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-master">掌握</span>【考点3】世界观和方法论（六个必须坚持）</h4>
                         <ol>
                             <li>坚持人民至上，坚持自信自立</li>
                             <li>坚持守正创新，坚持问题导向</li>
@@ -449,8 +607,8 @@
                         </ol>
                     </div>
 
-                    <div class="exam-point">
-                        <h3>【考点4】历史地位</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-master">掌握</span>【考点4】历史地位</h4>
                         <ol>
                             <li>是当代中国马克思主义、21世纪马克思主义</li>
                             <li>是中华文化和中国精神的时代精华</li>
@@ -459,23 +617,23 @@
                         </ol>
                     </div>
 
-                    <div class="highlight-box">
+                    <div class="info-box">
                         "两个确立"的决定性意义：是党在新时代取得的重大政治成果，是新时代党和国家事业取得历史性成就、发生历史性变革的决定性因素。
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- 第一章 -->
-        <div class="card" id="chapter-1">
-            <div class="card-header" onclick="toggleAccordion(this)">
-                <h2>📖 第一章：新时代坚持和发展中国特色社会主义</h2>
-                <span class="accordion-icon">▼</span>
+        <section class="card" id="chapter-1">
+            <div class="card-header">
+                <h2><span class="icon">📖</span> 第一章：新时代坚持和发展中国特色社会主义</h2>
+                <span class="arrow">▼</span>
             </div>
             <div class="card-content">
                 <div class="card-body">
-                    <div class="exam-point">
-                        <h3>【考点1】中国特色社会主义是历史和人民的选择</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-master">掌握</span>【考点1】中国特色社会主义是历史和人民的选择</h4>
                         <ul>
                             <li>是历史的结论，人民的选择</li>
                             <li>具有深厚的历史渊源和广泛的现实基础</li>
@@ -484,16 +642,16 @@
                         </ul>
                     </div>
 
-                    <div class="exam-point">
-                        <h3>【考点2】"四个自信"</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-master">掌握</span>【考点2】"四个自信"</h4>
                         <ul>
                             <li>道路自信、理论自信、制度自信、文化自信</li>
                             <li>坚定中国特色社会主义道路自信、理论自信、制度自信，说到底是要坚定文化自信</li>
                         </ul>
                     </div>
 
-                    <div class="exam-point">
-                        <h3>【考点3】新时代伟大变革的里程碑意义</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-understand">理解</span>【考点3】新时代伟大变革的里程碑意义</h4>
                         <ol>
                             <li>中国共产党在革命性锻造中更加坚强有力</li>
                             <li>中国人民的前进动力更加强大、奋斗精神更加昂扬、必胜信念更加坚定</li>
@@ -502,8 +660,8 @@
                         </ol>
                     </div>
 
-                    <div class="exam-point">
-                        <h3>【考点4】改革开放以来取得一切成绩和进步的根本原因</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-master">掌握</span>【考点4】改革开放以来取得一切成绩和进步的根本原因</h4>
                         <ol>
                             <li>开辟了中国特色社会主义道路</li>
                             <li>形成了中国特色社会主义理论体系</li>
@@ -513,25 +671,25 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- 第二章 -->
-        <div class="card" id="chapter-2">
-            <div class="card-header" onclick="toggleAccordion(this)">
-                <h2>📖 第二章：以中国式现代化全面推进中华民族伟大复兴</h2>
-                <span class="accordion-icon">▼</span>
+        <section class="card" id="chapter-2">
+            <div class="card-header">
+                <h2><span class="icon">📖</span> 第二章：以中国式现代化全面推进中华民族伟大复兴</h2>
+                <span class="arrow">▼</span>
             </div>
             <div class="card-content">
                 <div class="card-body">
-                    <div class="exam-point">
-                        <h3>【考点1】中国梦的本质</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-master">掌握</span>【考点1】中国梦的本质</h4>
                         <ul>
                             <li>国家富强、民族振兴、人民幸福</li>
                         </ul>
                     </div>
 
-                    <div class="exam-point">
-                        <h3>【考点2】中国式现代化的五大特征</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-master">掌握</span>【考点2】中国式现代化的五大特征</h4>
                         <ol>
                             <li>人口规模巨大的现代化</li>
                             <li>全体人民共同富裕的现代化</li>
@@ -541,8 +699,8 @@
                         </ol>
                     </div>
 
-                    <div class="exam-point">
-                        <h3>【考点3】中国式现代化的本质要求</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-master">掌握</span>【考点3】中国式现代化的本质要求</h4>
                         <ol>
                             <li>坚持中国共产党领导</li>
                             <li>坚持中国特色社会主义</li>
@@ -556,31 +714,31 @@
                         </ol>
                     </div>
 
-                    <div class="highlight-box">
+                    <div class="info-box">
                         五个必由之路：党的领导是必由之路、中国特色社会主义是必由之路、团结奋斗是必由之路、贯彻新发展理念是必由之路、全面从严治党是必由之路。
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- 第三章 -->
-        <div class="card" id="chapter-3">
-            <div class="card-header" onclick="toggleAccordion(this)">
-                <h2>📖 第三章：坚持党的全面领导</h2>
-                <span class="accordion-icon">▼</span>
+        <section class="card" id="chapter-3">
+            <div class="card-header">
+                <h2><span class="icon">📖</span> 第三章：坚持党的全面领导</h2>
+                <span class="arrow">▼</span>
             </div>
             <div class="card-content">
                 <div class="card-body">
-                    <div class="exam-point">
-                        <h3>【考点1】中国共产党领导是中国特色社会主义最本质的特征</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-master">掌握</span>【考点1】中国共产党领导是中国特色社会主义最本质的特征</h4>
                         <ul>
                             <li>中国共产党领导是中国特色社会主义制度的最大优势</li>
                             <li>党是最高政治领导力量</li>
                         </ul>
                     </div>
 
-                    <div class="exam-point">
-                        <h3>【考点2】党的领导是全面的、系统的、整体的</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-master">掌握</span>【考点2】党的领导是全面的、系统的、整体的</h4>
                         <ul>
                             <li><strong>领导对象全面</strong>：党领导人大、政府、政协、监察机关、司法机关、军队、人民团体、企事业单位等</li>
                             <li><strong>领导内容全面</strong>：包括经济、政治、文化、社会、生态文明、国家安全、国防军队、外交、党的建设等</li>
@@ -589,8 +747,8 @@
                         </ul>
                     </div>
 
-                    <div class="exam-point">
-                        <h3>【考点3】"四个意识""两个维护"</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-master">掌握</span>【考点3】"四个意识""两个维护"</h4>
                         <ul>
                             <li><strong>四个意识</strong>：政治意识、大局意识、核心意识、看齐意识</li>
                             <li><strong>两个维护</strong>：坚决维护习近平总书记党中央的核心、全党的核心地位；坚决维护党中央权威和集中统一领导</li>
@@ -598,26 +756,26 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- 第四章 -->
-        <div class="card" id="chapter-4">
-            <div class="card-header" onclick="toggleAccordion(this)">
-                <h2>📖 第四章：坚持以人民为中心</h2>
-                <span class="accordion-icon">▼</span>
+        <section class="card" id="chapter-4">
+            <div class="card-header">
+                <h2><span class="icon">📖</span> 第四章：坚持以人民为中心</h2>
+                <span class="arrow">▼</span>
             </div>
             <div class="card-content">
                 <div class="card-body">
-                    <div class="exam-point">
-                        <h3>【考点1】人民立场是中国共产党的根本政治立场</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-master">掌握</span>【考点1】人民立场是中国共产党的根本政治立场</h4>
                         <ul>
                             <li>体现党的性质宗旨、执政理念和根本属性</li>
                             <li>是中国共产党区别于其他政党的显著标志</li>
                         </ul>
                     </div>
 
-                    <div class="exam-point">
-                        <h3>【考点2】如何理解共同富裕的重要性</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-master">掌握</span>【考点2】如何理解共同富裕的重要性</h4>
                         <ol>
                             <li>共同富裕是中国共产党人始终不渝的奋斗目标</li>
                             <li>共同富裕是中国特色社会主义的本质要求</li>
@@ -625,8 +783,8 @@
                         </ol>
                     </div>
 
-                    <div class="exam-point">
-                        <h3>【考点3】扎实推动共同富裕的重大举措</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-understand">理解</span>【考点3】扎实推动共同富裕的重大举措</h4>
                         <ol>
                             <li>着力扩大中等收入群体规模</li>
                             <li>加强对高收入的规范和调节</li>
@@ -638,26 +796,26 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- 第五章 -->
-        <div class="card" id="chapter-5">
-            <div class="card-header" onclick="toggleAccordion(this)">
-                <h2>📖 第五章：全面深化改革开放</h2>
-                <span class="accordion-icon">▼</span>
+        <section class="card" id="chapter-5">
+            <div class="card-header">
+                <h2><span class="icon">📖</span> 第五章：全面深化改革开放</h2>
+                <span class="arrow">▼</span>
             </div>
             <div class="card-content">
                 <div class="card-body">
-                    <div class="exam-point">
-                        <h3>【考点1】全面深化改革总目标</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-master">掌握</span>【考点1】全面深化改革总目标</h4>
                         <ol>
                             <li>完善和发展中国特色社会主义制度</li>
                             <li>推进国家治理体系和治理能力现代化</li>
                         </ol>
                     </div>
 
-                    <div class="exam-point">
-                        <h3>【考点2】新发展理念的五大理念</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-master">掌握</span>【考点2】新发展理念的五大理念</h4>
                         <ul>
                             <li><strong>创新</strong>：注重解决发展动力问题</li>
                             <li><strong>协调</strong>：注重解决发展不平衡问题</li>
@@ -667,23 +825,23 @@
                         </ul>
                     </div>
 
-                    <div class="highlight-box">
+                    <div class="info-box">
                         新发展格局：以国内大循环为主体、国内国际双循环相互促进。
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- 第六章 -->
-        <div class="card" id="chapter-6">
-            <div class="card-header" onclick="toggleAccordion(this)">
-                <h2>📖 第六章：推动高质量发展</h2>
-                <span class="accordion-icon">▼</span>
+        <section class="card" id="chapter-6">
+            <div class="card-header">
+                <h2><span class="icon">📖</span> 第六章：推动高质量发展</h2>
+                <span class="arrow">▼</span>
             </div>
             <div class="card-content">
                 <div class="card-body">
-                    <div class="exam-point">
-                        <h3>【考点1】高质量发展的含义</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-master">掌握</span>【考点1】高质量发展的含义</h4>
                         <ol>
                             <li>是能够满足人民日益增长的美好生活需要的发展</li>
                             <li>是体现新发展理念的发展</li>
@@ -692,8 +850,8 @@
                         </ol>
                     </div>
 
-                    <div class="exam-point">
-                        <h3>【考点2】我国社会主义基本经济制度</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-master">掌握</span>【考点2】我国社会主义基本经济制度</h4>
                         <ol>
                             <li>以公有制为主体、多种所有制经济共同发展</li>
                             <li>以按劳分配为主体、多种分配方式并存</li>
@@ -701,8 +859,8 @@
                         </ol>
                     </div>
 
-                    <div class="exam-point">
-                        <h3>【考点3】实施乡村振兴战略</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-understand">理解</span>【考点3】实施乡村振兴战略</h4>
                         <ul>
                             <li>农业农村现代化是总目标</li>
                             <li>坚持农业农村优先发展是总方针</li>
@@ -711,18 +869,18 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- 第七章 -->
-        <div class="card" id="chapter-7">
-            <div class="card-header" onclick="toggleAccordion(this)">
-                <h2>📖 第七章：教育、科技、人才战略</h2>
-                <span class="accordion-icon">▼</span>
+        <section class="card" id="chapter-7">
+            <div class="card-header">
+                <h2><span class="icon">📖</span> 第七章：教育、科技、人才战略</h2>
+                <span class="arrow">▼</span>
             </div>
             <div class="card-content">
                 <div class="card-body">
-                    <div class="exam-point">
-                        <h3>【考点1】全面建设社会主义现代化国家的基础性、战略性支撑</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-master">掌握</span>【考点1】全面建设社会主义现代化国家的基础性、战略性支撑</h4>
                         <ol>
                             <li>教育是根本，科技是关键，人才是基础</li>
                             <li>必须坚持科技是第一生产力、人才是第一资源、创新是第一动力</li>
@@ -731,8 +889,8 @@
                         </ol>
                     </div>
 
-                    <div class="exam-point">
-                        <h3>【考点2】建设教育强国</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-master">掌握</span>【考点2】建设教育强国</h4>
                         <ol>
                             <li>全面建成社会主义现代化强国的战略先导</li>
                             <li>实现高水平科技自立自强的重要支撑</li>
@@ -741,31 +899,31 @@
                         </ol>
                     </div>
 
-                    <div class="highlight-box">
+                    <div class="warning-box">
                         关键核心技术是要不来、买不来、讨不来的，是国之重器，必须掌握在自己手中。
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- 第八章 -->
-        <div class="card" id="chapter-8">
-            <div class="card-header" onclick="toggleAccordion(this)">
-                <h2>📖 第八章：发展全过程人民民主</h2>
-                <span class="accordion-icon">▼</span>
+        <section class="card" id="chapter-8">
+            <div class="card-header">
+                <h2><span class="icon">📖</span> 第八章：发展全过程人民民主</h2>
+                <span class="arrow">▼</span>
             </div>
             <div class="card-content">
                 <div class="card-body">
-                    <div class="exam-point">
-                        <h3>【考点1】什么是全过程人民民主</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-master">掌握</span>【考点1】什么是全过程人民民主</h4>
                         <ul>
                             <li>全链条、全方位、全覆盖的民主</li>
                             <li>是最广泛、最真实、最管用的社会主义民主</li>
                         </ul>
                     </div>
 
-                    <div class="exam-point">
-                        <h3>【考点2】如何理解全过程人民民主</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-understand">理解</span>【考点2】如何理解全过程人民民主</h4>
                         <ul>
                             <li><strong>在领域上</strong>：涵盖经济、政治、文化、社会、生态文明等各个方面</li>
                             <li><strong>在环节上</strong>：民主选举、民主协商、民主决策、民主管理、民主监督环环相扣</li>
@@ -774,8 +932,8 @@
                         </ul>
                     </div>
 
-                    <div class="exam-point">
-                        <h3>【考点3】怎样评价民主</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-know">了解</span>【考点3】怎样评价民主</h4>
                         <ul>
                             <li><strong>从主体看</strong>：民主应该由这个国家的人民来评判</li>
                             <li><strong>从功效看</strong>：民主主要用来解决人民需要解决的问题</li>
@@ -784,25 +942,25 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- 第九章 -->
-        <div class="card" id="chapter-9">
-            <div class="card-header" onclick="toggleAccordion(this)">
-                <h2>📖 第九章：全面依法治国</h2>
-                <span class="accordion-icon">▼</span>
+        <section class="card" id="chapter-9">
+            <div class="card-header">
+                <h2><span class="icon">📖</span> 第九章：全面依法治国</h2>
+                <span class="arrow">▼</span>
             </div>
             <div class="card-content">
                 <div class="card-body">
-                    <div class="exam-point">
-                        <h3>【考点1】依法治国的总目标</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-master">掌握</span>【考点1】依法治国的总目标</h4>
                         <ul>
                             <li>建设中国特色社会主义法治体系、建设社会主义法治国家</li>
                         </ul>
                     </div>
 
-                    <div class="exam-point">
-                        <h3>【考点2】中国特色社会主义法治体系</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-master">掌握</span>【考点2】中国特色社会主义法治体系</h4>
                         <ol>
                             <li>完备的法律规范体系</li>
                             <li>高效的法治实施体系</li>
@@ -812,30 +970,30 @@
                         </ol>
                     </div>
 
-                    <div class="exam-point">
-                        <h3>【考点3】法治建设的新十六字方针</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-master">掌握</span>【考点3】法治建设的新十六字方针</h4>
                         <ul>
                             <li>科学立法、严格执法、公正司法、全民守法</li>
                         </ul>
                     </div>
 
-                    <div class="highlight-box">
+                    <div class="info-box">
                         全面依法治国体现在：全方位（五大体系）、全层次（共同推进、一体建设）、全过程（十六字方针）。
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- 第十章 -->
-        <div class="card" id="chapter-10">
-            <div class="card-header" onclick="toggleAccordion(this)">
-                <h2>📖 第十章：建设社会主义文化强国</h2>
-                <span class="accordion-icon">▼</span>
+        <section class="card" id="chapter-10">
+            <div class="card-header">
+                <h2><span class="icon">📖</span> 第十章：建设社会主义文化强国</h2>
+                <span class="arrow">▼</span>
             </div>
             <div class="card-content">
                 <div class="card-body">
-                    <div class="exam-point">
-                        <h3>【考点1】社会主义核心价值观</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-master">掌握</span>【考点1】社会主义核心价值观</h4>
                         <ul>
                             <li><strong>国家层面</strong>：富强、民主、文明、和谐</li>
                             <li><strong>社会层面</strong>：自由、平等、公正、法治</li>
@@ -843,15 +1001,15 @@
                         </ul>
                     </div>
 
-                    <div class="exam-point">
-                        <h3>【考点2】中华文明的突出特性</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-know">了解</span>【考点2】中华文明的突出特性</h4>
                         <ul>
                             <li>连续性、创新性、统一性、包容性、和平性</li>
                         </ul>
                     </div>
 
-                    <div class="exam-point">
-                        <h3>【考点3】传承发展中华优秀传统文化</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-understand">理解</span>【考点3】传承发展中华优秀传统文化</h4>
                         <ul>
                             <li><strong>创造性转化</strong>：根据时代要求，对传统文化中有价值的内容和形式进行改造</li>
                             <li><strong>创新性发展</strong>：根据时代进步，对传统文化内涵进行补充、拓展、完善</li>
@@ -859,18 +1017,18 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- 第十一章 -->
-        <div class="card" id="chapter-11">
-            <div class="card-header" onclick="toggleAccordion(this)">
-                <h2>📖 第十一章：以保障和改善民生为重点加强社会建设</h2>
-                <span class="accordion-icon">▼</span>
+        <section class="card" id="chapter-11">
+            <div class="card-header">
+                <h2><span class="icon">📖</span> 第十一章：以保障和改善民生为重点加强社会建设</h2>
+                <span class="arrow">▼</span>
             </div>
             <div class="card-content">
                 <div class="card-body">
-                    <div class="exam-point">
-                        <h3>【考点1】民生和发展的关系</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-master">掌握</span>【考点1】民生和发展的关系</h4>
                         <ol>
                             <li>发展是改善民生的物质基础</li>
                             <li>民生改善能够促进发展、扩大内需、增强社会活力</li>
@@ -878,16 +1036,16 @@
                         </ol>
                     </div>
 
-                    <div class="exam-point">
-                        <h3>【考点2】坚持在发展中增进民生福祉</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-understand">理解</span>【考点2】坚持在发展中增进民生福祉</h4>
                         <ul>
                             <li><strong>工作思路</strong>：坚守底线、突出重点、完善制度、引导预期</li>
                             <li><strong>重要原则</strong>：尽力而为、量力而行；人人尽责、人人享有</li>
                         </ul>
                     </div>
 
-                    <div class="exam-point">
-                        <h3>【考点3】怎样推进社会治理现代化</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-understand">理解</span>【考点3】怎样推进社会治理现代化</h4>
                         <ol>
                             <li>坚持系统治理、综合治理、依法治理、源头治理</li>
                             <li>健全党组织领导的自治、法治、德治相结合的城乡基层治理体系</li>
@@ -896,18 +1054,18 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- 第十二章 -->
-        <div class="card" id="chapter-12">
-            <div class="card-header" onclick="toggleAccordion(this)">
-                <h2>📖 第十二章：建设社会主义生态文明</h2>
-                <span class="accordion-icon">▼</span>
+        <section class="card" id="chapter-12">
+            <div class="card-header">
+                <h2><span class="icon">📖</span> 第十二章：建设社会主义生态文明</h2>
+                <span class="arrow">▼</span>
             </div>
             <div class="card-content">
                 <div class="card-body">
-                    <div class="exam-point">
-                        <h3>【考点1】社会主义生态文明观</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-master">掌握</span>【考点1】社会主义生态文明观</h4>
                         <ol>
                             <li>人与自然和谐共生的现代化</li>
                             <li>绿水青山就是金山银山</li>
@@ -918,8 +1076,8 @@
                         </ol>
                     </div>
 
-                    <div class="exam-point">
-                        <h3>【考点2】怎样建设美丽中国</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-understand">理解</span>【考点2】怎样建设美丽中国</h4>
                         <ol>
                             <li>形成绿色发展方式和生活方式</li>
                             <li>着力解决突出环境问题</li>
@@ -930,25 +1088,25 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- 第十三章 -->
-        <div class="card" id="chapter-13">
-            <div class="card-header" onclick="toggleAccordion(this)">
-                <h2>📖 第十三章：维护和塑造国家安全</h2>
-                <span class="accordion-icon">▼</span>
+        <section class="card" id="chapter-13">
+            <div class="card-header">
+                <h2><span class="icon">📖</span> 第十三章：维护和塑造国家安全</h2>
+                <span class="arrow">▼</span>
             </div>
             <div class="card-content">
                 <div class="card-body">
-                    <div class="exam-point">
-                        <h3>【考点1】总体国家安全观</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-master">掌握</span>【考点1】总体国家安全观</h4>
                         <ul>
                             <li>坚持国家利益至上，以人民安全为宗旨，以政治安全为根本，以经济安全为保障</li>
                         </ul>
                     </div>
 
-                    <div class="exam-point">
-                        <h3>【考点2】"五个统筹"</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-master">掌握</span>【考点2】"五个统筹"</h4>
                         <ol>
                             <li>统筹发展和安全</li>
                             <li>统筹开放和安全</li>
@@ -959,58 +1117,58 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- 第十四章 -->
-        <div class="card" id="chapter-14">
-            <div class="card-header" onclick="toggleAccordion(this)">
-                <h2>📖 第十四章：建设巩固国防和强大人民军队</h2>
-                <span class="accordion-icon">▼</span>
+        <section class="card" id="chapter-14">
+            <div class="card-header">
+                <h2><span class="icon">📖</span> 第十四章：建设巩固国防和强大人民军队</h2>
+                <span class="arrow">▼</span>
             </div>
             <div class="card-content">
                 <div class="card-body">
-                    <div class="exam-point">
-                        <h3>【考点1】党在新时代的强军目标</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-master">掌握</span>【考点1】党在新时代的强军目标</h4>
                         <ul>
                             <li>建设一支听党指挥、能打胜仗、作风优良的人民军队，把人民军队建设成为世界一流军队</li>
                         </ul>
                     </div>
 
-                    <div class="exam-point">
-                        <h3>【考点2】"四有"和"四铁"</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-master">掌握</span>【考点2】"四有"和"四铁"</h4>
                         <ul>
                             <li><strong>四有</strong>：有灵魂、有本事、有血性、有品德</li>
                             <li><strong>四铁</strong>：铁一般的信仰、铁一般的信念、铁一般的纪律、铁一般的担当</li>
                         </ul>
                     </div>
 
-                    <div class="exam-point">
-                        <h3>【考点3】"五个坚持"战略布局</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-understand">理解</span>【考点3】"五个坚持"战略布局</h4>
                         <ul>
                             <li>政治建军、改革强军、科技强军、人才强军、依法治军</li>
                         </ul>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- 第十五章 -->
-        <div class="card" id="chapter-15">
-            <div class="card-header" onclick="toggleAccordion(this)">
-                <h2>📖 第十五章：坚持"一国两制"和推进祖国完全统一</h2>
-                <span class="accordion-icon">▼</span>
+        <section class="card" id="chapter-15">
+            <div class="card-header">
+                <h2><span class="icon">📖</span> 第十五章：坚持"一国两制"和推进祖国完全统一</h2>
+                <span class="arrow">▼</span>
             </div>
             <div class="card-content">
                 <div class="card-body">
-                    <div class="exam-point">
-                        <h3>【考点1】"一国两制"方针最高原则</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-master">掌握</span>【考点1】"一国两制"方针最高原则</h4>
                         <ul>
                             <li>维护国家主权、安全、发展利益是"一国两制"方针的最高原则</li>
                         </ul>
                     </div>
 
-                    <div class="exam-point">
-                        <h3>【考点2】人类命运共同体——建设五个世界</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-master">掌握</span>【考点2】人类命运共同体——建设五个世界</h4>
                         <ol>
                             <li>坚持对话协商，建设持久和平的世界</li>
                             <li>坚持共建共享，建设普遍安全的世界</li>
@@ -1021,25 +1179,25 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- 第十六章 -->
-        <div class="card" id="chapter-16">
-            <div class="card-header" onclick="toggleAccordion(this)">
-                <h2>📖 第十六章：中国特色大国外交</h2>
-                <span class="accordion-icon">▼</span>
+        <section class="card" id="chapter-16">
+            <div class="card-header">
+                <h2><span class="icon">📖</span> 第十六章：中国特色大国外交</h2>
+                <span class="arrow">▼</span>
             </div>
             <div class="card-content">
                 <div class="card-body">
-                    <div class="exam-point">
-                        <h3>【考点1】弘扬全人类共同价值</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-master">掌握</span>【考点1】弘扬全人类共同价值</h4>
                         <ul>
                             <li>和平、发展、公平、正义、民主、自由</li>
                         </ul>
                     </div>
 
-                    <div class="exam-point">
-                        <h3>【考点2】当前世界面临的"四大赤字"</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-master">掌握</span>【考点2】当前世界面临的"四大赤字"</h4>
                         <ol>
                             <li>治理赤字</li>
                             <li>和平赤字</li>
@@ -1048,8 +1206,8 @@
                         </ol>
                     </div>
 
-                    <div class="exam-point">
-                        <h3>【考点3】世界怎么了</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-understand">理解</span>【考点3】世界怎么了</h4>
                         <ol>
                             <li>世界进入动荡变革期</li>
                             <li>国际力量对比发生深刻变化</li>
@@ -1059,18 +1217,18 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- 第十七章 -->
-        <div class="card" id="chapter-17">
-            <div class="card-header" onclick="toggleAccordion(this)">
-                <h2>📖 第十七章：全面从严治党</h2>
-                <span class="accordion-icon">▼</span>
+        <section class="card" id="chapter-17">
+            <div class="card-header">
+                <h2><span class="icon">📖</span> 第十七章：全面从严治党</h2>
+                <span class="arrow">▼</span>
             </div>
             <div class="card-content">
                 <div class="card-body">
-                    <div class="exam-point">
-                        <h3>【考点1】为什么要从严治党</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-master">掌握</span>【考点1】为什么要从严治党</h4>
                         <ol>
                             <li>从严治党是马克思主义政党的政治优势</li>
                             <li>全面从严治党是实现民族复兴的根本保证</li>
@@ -1078,8 +1236,8 @@
                         </ol>
                     </div>
 
-                    <div class="exam-point">
-                        <h3>【考点2】勇于自我革命</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-master">掌握</span>【考点2】勇于自我革命</h4>
                         <ul>
                             <li>勇于自我革命是跳出历史周期率的第二个答案</li>
                             <li>是我们党最鲜明的品格和最大的优势</li>
@@ -1087,8 +1245,8 @@
                         </ul>
                     </div>
 
-                    <div class="exam-point">
-                        <h3>【考点3】"三个务必"</h3>
+                    <div class="knowledge-card">
+                        <h4><span class="level-tag level-tag-master">掌握</span>【考点3】"三个务必"</h4>
                         <ol>
                             <li>务必不忘初心、牢记使命</li>
                             <li>务必谦虚谨慎、艰苦奋斗</li>
@@ -1096,56 +1254,38 @@
                         </ol>
                     </div>
 
-                    <div class="highlight-box">
+                    <div class="info-box">
                         为什么要把党的政治建设摆在首位：政治建设决定党的建设的方向和效果，抓住了全面从严治党的根本性问题。
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
 
-    <!-- 页脚 -->
-    <footer>
-        <p>📚 新思想考前速记 | 习近平新时代中国特色社会主义思想概论</p>
-        <p>考试只考大题，祝你取得好成绩！🎯</p>
+    </main>
+
+    <!-- 折叠所有按钮 -->
+    <button class="collapse-all" id="collapseAll" title="折叠/展开所有模块">📂</button>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>📖 新思想考前速记 | 习近平新时代中国特色社会主义思想概论</p>
+        <p class="highlight">🎯 只考大题，祝考试顺利！</p>
+        <p>Composed by MashedPotato | 最后更新: <span id="lastModified"></span></p>
     </footer>
 
-    <!-- 返回顶部按钮 -->
-    <button class="back-to-top" id="backToTop">↑</button>
+    <!-- Back to top -->
+    <button class="back-to-top" id="backToTop" aria-label="返回顶部">↑</button>
 
     <script>
-        // 汉堡菜单
-        const menuToggle = document.getElementById('menuToggle');
-        const fullscreenNav = document.getElementById('fullscreenNav');
-        const closeNav = document.getElementById('closeNav');
-
-        menuToggle.addEventListener('click', () => {
-            fullscreenNav.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-
-        closeNav.addEventListener('click', () => {
-            fullscreenNav.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-
-        // 点击导航链接关闭菜单
-        fullscreenNav.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                fullscreenNav.classList.remove('active');
-                document.body.style.overflow = '';
+        // Accordion
+        document.querySelectorAll('.card-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const card = header.parentElement;
+                card.classList.toggle('active');
             });
         });
 
-        // 手风琴折叠
-        function toggleAccordion(header) {
-            const content = header.nextElementSibling;
-            const icon = header.querySelector('.accordion-icon');
-            content.classList.toggle('active');
-            icon.classList.toggle('active');
-        }
-
-        // 返回顶部按钮
+        // Back to top
         const backToTop = document.getElementById('backToTop');
 
         window.addEventListener('scroll', () => {
@@ -1157,45 +1297,33 @@
         });
 
         backToTop.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // 快速导航高亮
-        const quickNavLinks = document.querySelectorAll('.quick-nav a');
-        const sections = document.querySelectorAll('.card');
-
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (window.scrollY >= sectionTop - 150) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            quickNavLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === '#' + current) {
-                    link.classList.add('active');
-                }
-            });
+        // Last modified
+        document.getElementById('lastModified').textContent = new Date(document.lastModified).toLocaleString('zh-CN', {
+            year: 'numeric', month: '2-digit', day: '2-digit',
+            hour: '2-digit', minute: '2-digit'
         });
 
-        // 平滑滚动
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+        // Auto-expand first card
+        document.querySelector('.card').classList.add('active');
+
+        // Collapse/Expand all
+        const collapseBtn = document.getElementById('collapseAll');
+        let allCollapsed = false;
+
+        collapseBtn.addEventListener('click', () => {
+            const cards = document.querySelectorAll('.card');
+            allCollapsed = !allCollapsed;
+            cards.forEach(card => {
+                if (allCollapsed) {
+                    card.classList.remove('active');
+                } else {
+                    card.classList.add('active');
                 }
             });
+            collapseBtn.textContent = allCollapsed ? '📂' : '📁';
         });
     </script>
 </body>
