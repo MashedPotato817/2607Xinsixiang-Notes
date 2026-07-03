@@ -510,6 +510,89 @@
         .card:nth-child(11) { animation-delay: 0.55s; }
         .card:nth-child(12) { animation-delay: 0.6s; }
 
+        /* ============ MENU TOGGLE ============ */
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 0.75rem;
+            right: 0.75rem;
+            width: 44px;
+            height: 44px;
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.4);
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 200;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: white;
+            border-radius: 1px;
+            transition: all 0.3s;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translateY(7px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translateY(-7px);
+        }
+
+        /* ============ FULLSCREEN NAV ============ */
+        .fullscreen-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--bg-card);
+            z-index: 150;
+            padding: 5rem 1.5rem 1.5rem;
+            overflow-y: auto;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .fullscreen-nav.active {
+            display: block;
+        }
+
+        .fullscreen-nav a {
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.25rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            border-bottom: 1px solid var(--border);
+            font-size: 1.1rem;
+            min-height: 48px;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .fullscreen-nav a:hover,
+        .fullscreen-nav a:active {
+            background: var(--blue-50);
+            color: var(--blue-600);
+        }
+
         /* ============ REQUIREMENT LEVELS ============ */
         .level-tag {
             display: inline-block;
@@ -540,12 +623,14 @@
 
         /* ============ RESPONSIVE ============ */
         @media (max-width: 768px) {
+            .menu-toggle { display: flex; }
+
             .header .exam-info {
                 font-size: 0.7rem;
                 padding: 0.25rem 0.6rem;
             }
 
-            .quick-nav { top: 48px; }
+            .quick-nav { display: none; }
 
             .container { padding: 0.75rem; }
 
@@ -592,6 +677,36 @@
             <span class="exam-info">📅 只考大题</span>
         </div>
     </header>
+
+    <!-- 汉堡菜单按钮 -->
+    <button class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- 全屏导航 -->
+    <div class="fullscreen-nav" id="fullscreenNav">
+        <a href="#exam-focus" onclick="closeMenu()">🎯 高频考点</a>
+        <a href="#chapter-intro" onclick="closeMenu()">📌 导论</a>
+        <a href="#chapter-1" onclick="closeMenu()">📖 第一章</a>
+        <a href="#chapter-2" onclick="closeMenu()">📖 第二章</a>
+        <a href="#chapter-3" onclick="closeMenu()">📖 第三章</a>
+        <a href="#chapter-4" onclick="closeMenu()">📖 第四章</a>
+        <a href="#chapter-5" onclick="closeMenu()">📖 第五章</a>
+        <a href="#chapter-6" onclick="closeMenu()">📖 第六章</a>
+        <a href="#chapter-7" onclick="closeMenu()">📖 第七章</a>
+        <a href="#chapter-8" onclick="closeMenu()">📖 第八章</a>
+        <a href="#chapter-9" onclick="closeMenu()">📖 第九章</a>
+        <a href="#chapter-10" onclick="closeMenu()">📖 第十章</a>
+        <a href="#chapter-11" onclick="closeMenu()">📖 第十一章</a>
+        <a href="#chapter-12" onclick="closeMenu()">📖 第十二章</a>
+        <a href="#chapter-13" onclick="closeMenu()">📖 第十三章</a>
+        <a href="#chapter-14" onclick="closeMenu()">📖 第十四章</a>
+        <a href="#chapter-15" onclick="closeMenu()">📖 第十五章</a>
+        <a href="#chapter-16" onclick="closeMenu()">📖 第十六章</a>
+        <a href="#chapter-17" onclick="closeMenu()">📖 第十七章</a>
+    </div>
 
     <!-- Quick Nav -->
     <div class="quick-nav">
@@ -1522,6 +1637,20 @@
     <button class="back-to-top" id="backToTop" aria-label="返回顶部">↑</button>
 
     <script>
+        // 汉堡菜单
+        const menuToggle = document.getElementById('menuToggle');
+        const fullscreenNav = document.getElementById('fullscreenNav');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            fullscreenNav.classList.toggle('active');
+        });
+
+        function closeMenu() {
+            menuToggle.classList.remove('active');
+            fullscreenNav.classList.remove('active');
+        }
+
         // 折叠状态记忆
         const STORAGE_KEY = 'newthought-card-states';
 
