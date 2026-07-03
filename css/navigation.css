@@ -140,12 +140,12 @@
 .fullscreen-nav a {
     display: flex;
     align-items: center;
-    padding: 0.875rem 1.25rem;
+    padding: 0.75rem 1rem;
     color: var(--text-primary);
     text-decoration: none;
     border-bottom: 1px solid var(--border);
-    font-size: 1rem;
-    min-height: 48px;
+    font-size: 0.9rem;
+    min-height: 44px;
     -webkit-tap-highlight-color: transparent;
 }
 
@@ -156,9 +156,9 @@
 }
 
 .nav-keywords {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     color: var(--text-dim);
-    margin-top: 0.25rem;
+    margin-top: 0.2rem;
 }
 
 /* 返回顶部按钮 */
