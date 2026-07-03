@@ -53,6 +53,72 @@
 
 2. 打开 `index.html` 文件
 
+## 📁 项目结构
+
+```
+2607Xinsixiang-Notes/
+├── README.md                 # 项目说明
+├── index.html                # 考前速记 HTML 页面
+├── .gitignore                # Git 忽略配置
+├── 01-导论与第一章.md
+├── 02-第二章与第三章.md
+├── 03-第四章与第五章.md
+├── 04-第六章与第七章.md
+├── 05-第八章与第九章.md
+├── 06-第十章与第十一章.md
+└── 07-第十二至十七章.md
+```
+
+## ⚙️ Git 忽略配置
+
+本项目使用 `.gitignore` 排除以下文件类型：
+
+```gitignore
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.bak
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build
+dist/
+build/
+```
+
+**说明**：仅上传 `.md` 和 `.html` 文件，排除系统文件、编辑器配置、临时文件等。
+
 ## 📝 考点说明
 
 - ✅ 导论 + 第1-17章全部大题考点
